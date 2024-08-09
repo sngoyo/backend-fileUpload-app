@@ -27,9 +27,11 @@ router.post('/fileanalyse', (req, res) => {
             return res.status(500).json({ error: 'File upload failed' });
         }
         if(!req.file) {
+            console.log(req.file.filename)
             return res.json({error: 'Please send file'});
         }
         else {
+            /*
             
             const imageUpload = new fileModel({
                 file: req.file.buffer,
@@ -45,9 +47,9 @@ router.post('/fileanalyse', (req, res) => {
                         .catch((err) => {
                             res.json({err: 'error' })
                         });          
-                        
-                     
-    
+                        */
+             const { mimetype, size, filename } = req.file;
+             return res.json({'name': filename, 'type': mimetype , 'size': size });
         }
     })
       
