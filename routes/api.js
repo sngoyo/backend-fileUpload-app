@@ -2,20 +2,22 @@ const express = require('express');
 const router = express.Router();
 const fileModel = require('./models/fileModel');
 const multer = require('multer');
+const path = require('path');
 
 
 //Storage
 const Storage = multer.diskStorage({
     destination: 'uploads',
     filename: (req, file, cb) => {
-        cb(null, file.originalname);
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        //cb(null, file.originalname);
     }
 });
 
 
 const upload = multer ({
     storage: Storage
-}).single('upload');
+}).single('upfile');
 
 
 router.post('/fileanalyse', (req, res) => {
