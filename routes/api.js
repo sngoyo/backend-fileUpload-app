@@ -21,7 +21,7 @@ const upload = multer ({
 
 
 router.post('/fileanalyse', (req, res) => {
-    upload(req, res, async(err) => {
+    upload(req, res, (err) => {
         if(err) {
             console.log(err);
             return res.status(500).json({ error: 'File upload failed' });
@@ -36,7 +36,7 @@ router.post('/fileanalyse', (req, res) => {
                 contentType: req.file.mimetype
             });
 
-             await imageUpload.save()
+              imageUpload.save()
                        .then(() => {
                             const { mimetype, size, filename } = req.file;
                             return res.json({'name': filename, 'type': mimetype , 'size': size });
