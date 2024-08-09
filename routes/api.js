@@ -30,7 +30,7 @@ router.post('/fileanalyse', (req, res) => {
             return res.json({error: 'Please send file'});
         }
         else {
-            /*
+            
             
             const imageUpload = new fileModel({
                 file: req.file.buffer,
@@ -39,16 +39,14 @@ router.post('/fileanalyse', (req, res) => {
 
               imageUpload.save()
                        .then(() => {
-                            const { mimetype, size, filename } = req.file;
-                            return res.json({'name': filename, 'type': mimetype , 'size': size });
-                
+                        const { mimetype, size, originalname } = req.file;
+                        return res.json({'name': originalname, 'type': mimetype , 'size': size });
                         })
                         .catch((err) => {
                             res.json({err: 'error' })
                         });          
-                        */
-             const { mimetype, size, originalname } = req.file;
-             return res.json({'name': originalname, 'type': mimetype , 'size': size });
+                        
+            
         }
     })
       
